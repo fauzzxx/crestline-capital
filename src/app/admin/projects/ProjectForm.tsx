@@ -213,7 +213,6 @@ export function ProjectForm({ project }: ProjectFormProps) {
             />
             {thumbnailPreview && (
               <div className="mt-2 relative w-32 h-24 rounded-lg overflow-hidden border border-border bg-surface-elevated">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={thumbnailPreview} alt="Thumbnail preview" className="w-full h-full object-cover" />
               </div>
             )}
