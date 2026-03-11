@@ -3,10 +3,9 @@ import globals from "globals";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import tseslint from "typescript-eslint";
-import { flatConfig as nextFlatConfig } from "@next/eslint-plugin-next";
+import nextPlugin from "@next/eslint-plugin-next";
 
-const nextConfigs = nextFlatConfig.coreWebVitals;
-const nextSpread = Array.isArray(nextConfigs) ? nextConfigs : [nextConfigs];
+const nextSpread = [nextPlugin.configs["core-web-vitals"]];
 
 export default tseslint.config(
   { ignores: ["dist", ".next"] },
