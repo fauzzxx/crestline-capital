@@ -6,8 +6,9 @@ import { createProject, updateProject, uploadProjectThumbnail } from "@/app/acti
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import Image from "next/image";
 import { Plus, Trash2 } from "lucide-react";
-import type { Project, Builder, DiscountTier, UnitConfig } from "@/types/database";
+import type { Project, Builder, DiscountTier, UnitConfig, ProjectStatus } from "@/types/database";
 import { createClient } from "@/lib/supabase/client";
 
 interface ProjectFormProps {
@@ -37,7 +38,7 @@ export function ProjectForm({ project }: ProjectFormProps) {
       ? new Date(project.deal_deadline).toISOString().slice(0, 16)
       : "",
     description: project?.description ?? "",
-    status: (project?.status ?? "open") as any,
+    status: (project?.status ?? "open") as ProjectStatus,
   });
   const [thumbnailFile, setThumbnailFile] = useState<File | null>(null);
   const [thumbnailPreview, setThumbnailPreview] = useState<string | null>(project?.thumbnail_url ?? null);
@@ -213,7 +214,14 @@ export function ProjectForm({ project }: ProjectFormProps) {
             />
             {thumbnailPreview && (
               <div className="mt-2 relative w-32 h-24 rounded-lg overflow-hidden border border-border bg-surface-elevated">
-                <img src={thumbnailPreview} alt="Thumbnail preview" className="w-full h-full object-cover" />
+                <Image
+                  src={thumbnailPreview}
+                  alt="Thumbnail preview"
+                  width={128}
+                  height={96}
+                  className="w-full h-full object-cover"
+                  unoptimized={thumbnailPreview.startsWith("blob:")}
+                />
               </div>
             )}
           </div>
@@ -284,7 +292,7 @@ export function ProjectForm({ project }: ProjectFormProps) {
             <label className="text-xs text-cream-muted block mb-1">Status</label>
             <select
               value={form.status}
-              onChange={(e) => setForm({ ...form, status: e.target.value as any })}
+              onChange={(e) => setForm({ ...form, status: e.target.value as ProjectStatus })}
               className={inputClass}
             >
               <option value="open">Open</option>
