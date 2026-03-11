@@ -3,9 +3,14 @@ import globals from "globals";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import tseslint from "typescript-eslint";
+import { flatConfig as nextFlatConfig } from "@next/eslint-plugin-next";
+
+const nextConfigs = nextFlatConfig.coreWebVitals;
+const nextSpread = Array.isArray(nextConfigs) ? nextConfigs : [nextConfigs];
 
 export default tseslint.config(
   { ignores: ["dist", ".next"] },
+  ...nextSpread,
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ["**/*.{ts,tsx}"],

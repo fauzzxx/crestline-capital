@@ -155,7 +155,7 @@ export function ProjectDetailClient({ project, media, isMember }: ProjectDetailC
           )}
 
           {/* Unit Configurations */}
-          {project.unit_configs?.length > 0 && (
+          {project.unit_configs && project.unit_configs.length > 0 && (
             <section className="glass-card p-6 rounded-2xl">
               <h2 className="text-lg font-heading font-semibold mb-6">Unit Configurations</h2>
               <div className="overflow-x-auto">
@@ -240,7 +240,7 @@ export function ProjectDetailClient({ project, media, isMember }: ProjectDetailC
               <div>
                 <p className="text-xs text-cream-muted uppercase mb-3">Tier Discount Structure</p>
                 <div className="space-y-3">
-                  {(project.discount_tiers?.length > 0 ? project.discount_tiers : [{ min_units: project.minimum_members_required, discount_percentage: project.discount_percentage }])
+                  {((project.discount_tiers?.length ?? 0) > 0 ? project.discount_tiers ?? [] : [{ min_units: project.minimum_members_required, discount_percentage: project.discount_percentage }])
                     .sort((a, b) => a.min_units - b.min_units)
                     .map((tier, i) => {
                       const isReached = project.current_members_joined >= tier.min_units;

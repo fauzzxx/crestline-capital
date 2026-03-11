@@ -5,8 +5,10 @@ const nextConfig = {
   },
   reactStrictMode: true,
   transpilePackages: ['framer-motion'],
-  serverActions: {
-    bodySizeLimit: '10mb',
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '10mb',
+    },
   },
   images: {
     qualities: [75, 90, 95],

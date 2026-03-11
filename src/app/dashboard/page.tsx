@@ -31,7 +31,7 @@ export default async function DashboardPage() {
   const profile = profileRes.data;
   const activeProjects = (activeRes.data ?? []) as import("@/types/database").Project[];
   const upcomingProjects = (upcomingRes.data ?? []) as import("@/types/database").Project[];
-  const myPools = (myPoolsRes.data ?? []) as import("@/types/database").PoolMemberWithProject[];
+  const myPools = (myPoolsRes.data ?? []) as unknown as import("@/types/database").PoolMemberWithProject[];
   const myProjectIds = new Set(myPools.map((p) => p.project_id));
   const unlockedPools = myPools.filter((pm) => pm.project?.status === "unlocked");
 
