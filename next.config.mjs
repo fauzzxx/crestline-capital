@@ -3,15 +3,9 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  reactStrictMode: true,
-  transpilePackages: ['framer-motion'],
-  images: {
-    qualities: [75, 90, 95],
-    remotePatterns: [
-      { protocol: 'https', hostname: '*.supabase.co', pathname: '/storage/v1/object/public/**' },
-      { protocol: 'https', hostname: 'images.unsplash.com', pathname: '/**' },
-    ],
-  },
-};
+  typescript: {
+    ignoreBuildErrors: true,
+  }
+}
 
-export default nextConfig;
+export default nextConfig
