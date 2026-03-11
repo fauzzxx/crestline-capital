@@ -8,8 +8,6 @@
     "build": "next build --no-lint",
     "start": "next start",
     "lint": "eslint .",
-    "vite:dev": "vite",
-    "vite:build": "vite build",
     "test": "vitest run",
     "test:watch": "vitest"
   },
